@@ -8,7 +8,7 @@ public:
         if (n1 > n2) return false;
         
         int idx = 0;
-        
+         
         for (int i = 0; i < n2; i++) {
             if (t[i] == s[idx]) {
                 idx++;
