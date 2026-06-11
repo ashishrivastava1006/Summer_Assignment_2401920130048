@@ -1,26 +1,25 @@
+
 class Solution {
 public:
-    bool isValid(string s) {
-        stack<char>st;
-        for(int  i=0;i<s.size();i++){
-  if(s[i]=='('||s[i]=='{'||s[i]=='['){
-    st.push(s[i]);
-  }
-  else 
-  {
-    if(st.size()==0){
-        return false;
+    vector<string> generateParenthesis(int n) {
+        vector<string> res;
+        dfs(0, 0, "", n, res);
+        return res;        
     }
-    if ((st.top()=='('&& s[i]==')')||
-    (st.top()=='{'&& s[i]=='}')||
-    (st.top()=='['&& s[i]==']')){
-        st.pop();
-    }
-    else{
-        return false;
-    }
-  }
+
+private:
+    void dfs(int openP, int closeP, string s, int n, vector<string>& res) {
+        if (openP == closeP && openP + closeP == n * 2) {
+            res.push_back(s);
+            return;
         }
-return st.size()==0;
+
+        if (openP < n) {
+            dfs(openP + 1, closeP, s + "(", n, res);
+        }
+
+        if (closeP < openP) {
+            dfs(openP, closeP + 1, s + ")", n, res);
+        }
     }
 };
