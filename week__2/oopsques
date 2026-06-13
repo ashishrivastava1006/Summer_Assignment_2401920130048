@@ -1,1 +1,45 @@
+#include <iostream>
+using namespace std;
 
+// Interface-like abstract class
+class Playable {
+public:
+    virtual void play() = 0; // Pure virtual function
+};
+
+// Veena class
+class Veena : public Playable {
+public:
+    void play() override {
+        cout << "Playing Veena" << endl;
+    }
+};
+
+// Saxophone class
+class Saxophone : public Playable {
+public:
+    void play() override {
+        cout << "Playing Saxophone" << endl;
+    }
+};
+
+int main() {
+    // a. Create an instance of Veena and call play()
+    Veena veena;
+    veena.play();
+
+    // b. Create an instance of Saxophone and call play()
+    Saxophone saxophone;
+    saxophone.play();
+
+    // c. Use Playable pointer
+    Playable* p;
+
+    p = &veena;
+    p->play();
+
+    p = &saxophone;
+    p->play();
+
+    return 0;
+}
